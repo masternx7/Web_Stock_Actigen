@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="mycss/mycss.css">
+    <title>Document</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-signin {
+            width: 100%;
+            max-width: 400px;
+            padding: 15px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-signin">
+        <form id="loginForm">
+            <img src="image/actigen-logo-800338.png" alt="Login Icon" class="mb-4"
+                style="width: 300px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <h1 class="h3 mb-3 fw-normal text-center">กรุณาเข้าสู่ระบบ</h1>
+
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">เข้าสู่ระบบ</button>
+        </form>
+    </div>
+
+
+
+
+
+    <script type="module">
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import {
+            getAnalytics
+        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyCFyk_COhdIjnzaFmBDfbUOxyrzB8LNlO8",
+            authDomain: "stock-actigen.firebaseapp.com",
+            projectId: "stock-actigen",
+            storageBucket: "stock-actigen.appspot.com",
+            messagingSenderId: "195171881165",
+            appId: "1:195171881165:web:2b0df77225900be9d65984",
+            measurementId: "G-Z2XM5RQ7R3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        const auth = getAuth(app);
+
+
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"></script>
+</body>
+
+</html>

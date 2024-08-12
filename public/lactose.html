@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="mycss/mycss.css">
+    <link rel="stylesheet" href="myjs/myjs.js">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+        integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <title>Stock R&D</title>
+    <style>
+        .modal-lg,
+        .modal-xl {
+            max-width: 90%;
+        }
+
+        .modal-body .form-control {
+            min-height: 38px;
+        }
+
+        .modal-body .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .text-red {
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <br>
+                <h5 class="text-center ">Stock R&D</h5>
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="home.html">
+                                <i class="bi bi-bar-chart"></i>
+                                API
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="binder.html">
+                                <i class="bi bi-bar-chart"></i>
+                                Binder
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="coating_agent.html">
+                                <i class="bi bi-bar-chart"></i>
+                                Coating Agent
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="diluent.html">
+                                <i class="bi bi-bar-chart"></i>
+                                Diluent
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="disintegrant.html">
+                                <i class="bi bi-bar-chart"></i>
+                                Disintegrant
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="flavour.html">
+                                <i class="bi bi-bar-chart"></i>
+                                Flavour
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i class="bi bi-bar-chart"></i>
+                                Lactose
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="lubricantandglidant.html">
+                                <i class="bi bi-bar-chart"></i>
+                                Lubricant and Glidant
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="mcc.html">
+                                <i class="bi bi-bar-chart"></i>
+                                MCC
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="solubilizer.html">
+                                <i class="bi bi-bar-chart"></i>
+                                Solubilizer
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="starch.html">
+                                <i class="bi bi-bar-chart"></i>
+                                Starch
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="logoutButton">
+                                <i class="bi bi-box-arrow-left"></i>
+                                Logout
+                            </a>
+                        </li>
+                        <!-- More menu items -->
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-10 ml-sm-auto px-md-4">
+                <h1>LACTOSE</h1>
+
+
+                <div class="pt-3 pb-2 mb-3">
+                    <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"
+                        data-bs-target="#userFormLactoseList">รับเข้าวัตถุดิบ <i class="bi bi-plus-lg"></i></button>
+                    <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal"
+                        data-bs-target="#userFormLactoseList" id="subtractDataButton">
+                        จ่ายวัตถุดิบ <i class="bi bi-dash-lg"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-success mb-2" id="refreshDataButton"><i
+                            class="bi bi-arrow-clockwise"></i>รีเฟรช</button>
+
+                    <div class="mb-3">
+                        <label for="filterType" class="form-label">Filter by Type:</label>
+                        <select class="form-select" id="filterType">
+                            <option value="">All Types</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
+
+                    <table class="table table-striped table-hover mt-3 text-center table-bordered" id="myTable">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Material Code</th>
+                                <th>Material Name</th>
+                                <th>Lot no.</th>
+                                <th>Mfg. date</th>
+                                <th>Exp. date</th>
+                                <th>Remaining</th>
+                                <th>Project</th>
+                                <th>Recorderd by</th>
+                                <th>Objective</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="databody">
+                        </tbody>
+                    </table>
+                </div>
+
+            </main>
+
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="userFormLactoseList" tabindex="-1" aria-labelledby="userFormLactoseListLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userFormLactoseListLabel">Record Lactose</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="materialForm" method="post">
+                        <div class="row justify-content-center">
+                            <div class="col-md-6">
+                                <!-- First Column -->
+                                <div class="mb-3">
+                                    <label for="no" class="form-label">No:</label>
+                                    <input type="text" id="no" name="no" class="form-control form-control-sm" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="materialName" class="form-label">Material Name:</label>
+                                    <input type="text" id="materialName" name="materialName"
+                                        class="form-control form-control-sm" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="materialCode" class="form-label">Material Code:</label>
+                                    <input type="text" id="materialCode" name="materialCode"
+                                        class="form-control form-control-sm" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="lotNo" class="form-label">Lot no:</label>
+                                    <input type="text" id="lotNo" name="lotNo" class="form-control form-control-sm"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="mfgDate" class="form-label">Mfg date:</label>
+                                    <input type="date" id="mfgDate" name="mfgDate" class="form-control form-control-sm">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="expDate" class="form-label">Exp date:</label>
+                                    <input type="date" id="expDate" name="expDate" class="form-control form-control-sm">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Second Column -->
+                                <div class="mb-3">
+                                    <label for="remaining" class="form-label">Receive/Using:</label>
+                                    <input type="number" id="remaining" name="remaining"
+                                        class="form-control form-control-sm" step="any" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="project" class="form-label">Project:</label>
+                                    <input type="text" id="project" name="project" class="form-control form-control-sm"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="receive" class="form-label">Recorderd by:</label>
+                                    <input type="text" id="receive" name="receive" class="form-control form-control-sm"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="objective" class="form-label">Objective:</label>
+                                    <input type="text" id="objective" name="objective"
+                                        class="form-control form-control-sm" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="type" class="form-label">Type:</label>
+                                    <input class="form-control" list="typeList" id="type" name="type"
+                                        placeholder="Select or add a new type...">
+                                    <datalist id="typeList">
+                                        <!-- ตัวเลือกที่มีอยู่แล้วจะถูกเพิ่มที่นี่ -->
+                                    </datalist>
+                                </div>
+
+                            </div>
+                        </div>
+                        <br>
+                        <h6>ค้นหาข้อมูล</h6>
+                        <div class="input-group mb-3">
+                            <input type="text" id="searchInput" class="form-control" placeholder="ค้นหา..."
+                                aria-label="ค้นหา...">
+                            <button class="btn btn-outline-secondary" type="button" id="searchButton">Search</button>
+                        </div>
+                        <h6>ตารางบันทึกการรับเข้าวัตถุดิบ</h6>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Material Code</th>
+                                        <th>Material Name</th>
+                                        <th>Lot no.</th>
+                                        <th>Mfg. date</th>
+                                        <th>Exp. date</th>
+                                        <th>Receive</th>
+                                        <th>Project</th>
+                                        <th>Recorderd by</th>
+                                        <th>Objective</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="modalDatabody">
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+                        <h6>ตารางบันทึกการจ่ายวัตถุดิบ</h6>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Material Code</th>
+                                        <th>Material Name</th>
+                                        <th>Lot no.</th>
+                                        <th>Mfg. date</th>
+                                        <th>Exp. date</th>
+                                        <th>Using</th>
+                                        <th>Project</th>
+                                        <th>Recorderd by</th>
+                                        <th>Objective</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="modalDatabody2">
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <input type="submit" form="materialForm" class="btn btn-primary" value="submit">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+
+
+    <script type="module" src="myjs/lactose_js.js"></script>
+</body>
+
+</html>

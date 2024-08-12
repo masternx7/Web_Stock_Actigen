@@ -1,0 +1,19 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "API_LIST",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "no",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "type",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

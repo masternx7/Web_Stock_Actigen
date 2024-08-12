@@ -1,0 +1,60 @@
+
+table tr td{
+    vertical-align: middle;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.sidebar {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+}
+
+.sidebar .nav-link {
+    color: #333;
+    border-radius: 10px;
+    margin: 10px;
+    transition: all 0.3s;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #e9ecef;
+}
+
+.sidebar .nav-link.active {
+    background-color: #41a837;
+    color: white;
+    border-radius: 10px;
+}
+
+.sidebar .bi {
+    margin-right: 4px;
+}
+
+main {
+    padding-top: 1rem;
+}
+
+.rounded-border {
+    border-radius: 15px; /* ระดับความมนของขอบ */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* เอฟเฟกต์เงาเพื่อให้ดูมีมิติ */
+    border: 1px solid #dee2e6; /* เส้นขอบของ container */
+}
+
+.container-rounded {
+    padding: 20px; /* ระยะห่างภายใน */
+    background-color: #fff; /* สีพื้นหลังของ container */
+}
+
+.text-red {
+    color: red !important;
+}
+
+.text-green {
+    color: green !important;
+}
+
+
